@@ -1,30 +1,30 @@
 <script>
-	export let name;
+
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
-
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+	header{
+		position: fixed;
+		width: 100%;
+		top:0;
+		left:0;
+		height: 4rem;
+		background: #cf0056 ;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		box-shadow: 0 2px 6px rgba(0,0,0,0.26);
 	}
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+	h1{
+		color: #fff;
+		font-family: 'Roboto Slab', serif;
+		
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
 	}
 </style>
+
+<header>
+<h1>goMeetups</h1>	
+</header>
+
