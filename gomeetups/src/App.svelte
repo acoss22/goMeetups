@@ -26,6 +26,12 @@
 	]
 </script>
 
+<style>
+#meetups{
+	margin-top: 5rem;
+}
+</style>
+
 
 <Header />
 <section id="meetups">
