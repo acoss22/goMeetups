@@ -1,9 +1,16 @@
 <script>
 	import MeetupGrid from "./Meetups/MeetupGrid.svelte";
-	import MeetUpItem from "./Meetups/MeetUpItem.svelte";
 	import Header from "./UI/Header.svelte";
 
-	const meetups = [
+	let title='';
+	let subtitle='';
+	let address='';
+	let email ='';
+	let description='';
+	let imageUrl='';
+
+
+	let meetups = [
 		{
 			id: "m1",
 			title: "Coding Bootcamp",
@@ -26,8 +33,21 @@
 			contactEmail: "cycle@test.com",
 		},
 	];
-	function addMeetup() {}
-	
+	function addMeetup() {
+
+		const newMeetup = {
+			id: Math.random().toString(),
+			title: title,
+			substitle: subtitle,
+			description: description,
+			imageUrl: imageUrl, 
+			contactEmail: email,
+			address: address,
+			description: description
+		};
+		meetups = [newMeetup,...meetups];
+	}
+
 </script>
 
 <style>
@@ -42,27 +62,27 @@
 	<form on:submit|preventDefault={addMeetup}>
 		<div class="form-control">
 			<label for="title">Title</label>
-			<input type="text" id="title" />
+			<input type="text" id="title" bind:value={title} />
 		</div>
 		<div class="form-control">
 			<label for="subtitle">Subtitle</label>
-			<input type="text" id="subtitle" />
+			<input type="text" id="subtitle" bind:value={subtitle} />
 		</div>
 		<div class="form-control">
 			<label for="address">Address</label>
-			<input type="text" id="address" />
+			<input type="text" id="address" bind:value={address} />
 		</div>
 		<div class="form-control">
 			<label for="ImageUrl">ImageUrl</label>
-			<input type="text" id="ImageUrl" />
+			<input type="text" id="imageUrl" bind:value={imageUrl} />
 		</div>
 		<div class="form-control">
-			<label for="E-Mail">E-Mail</label>
-			<input type="text" id="E-Mail" />
+			<label for="email">E-Mail</label>
+			<input type="text" id="email" bind:value={email} />
 		</div>
 		<div class="form-control">
 			<label for="description">Description</label>
-			<textarea rows="3" id="description" />
+			<textarea rows="3" id="description"  bind:value={description} />
 		</div>
 		<button type="submit">Save</button>
 	</form>
