@@ -1,16 +1,16 @@
 <script>
-	import Button from './UI/Button.svelte';
+	import MeetUpItem from './Meetups/MeetUpItem.svelte';
+	import Button from "./UI/Button.svelte";
 	import MeetupGrid from "./Meetups/MeetupGrid.svelte";
 	import Header from "./UI/Header.svelte";
 	import TextInput from "./UI/TextInput.svelte";
-	
-	let title='';
-	let subtitle='';
-	let address='';
-	let email ='';
-	let description='';
-	let imageUrl='';
 
+	let title = "";
+	let subtitle = "";
+	let address = "";
+	let email = "";
+	let description = "";
+	let imageUrl = "";
 
 	let meetups = [
 		{
@@ -23,6 +23,7 @@
 				"data:image/jpeg;base64,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",
 			address: "Four Season Total Landscape",
 			contactEmail: "code@test.com",
+			isFavorite: false,
 		},
 		{
 			id: "m2",
@@ -33,23 +34,33 @@
 				"https://upload.wikimedia.org/wikipedia/commons/f/fa/Amsterdam_-_Bicycles_-_1058.jpg",
 			address: "Bilderdijkkade 68II, 1053 VN Amsterdam, Netherlands",
 			contactEmail: "cycle@test.com",
+			isFavorite: false,
 		},
 	];
 	function addMeetup() {
-
 		const newMeetup = {
 			id: Math.random().toString(),
 			title: title,
 			substitle: subtitle,
 			description: description,
-			imageUrl: imageUrl, 
+			imageUrl: imageUrl,
 			contactEmail: email,
 			address: address,
-			description: description
+			description: description,
 		};
-		meetups = [newMeetup,...meetups];
+		meetups = [newMeetup, ...meetups];
 	}
 
+	function toogleFavorite(event) {
+		const id = event.detail;
+		const updatedMeetup = {...meetups.find(m => m.id === id) //copy the meetup before updating
+		};
+		updatedMeetup.isFavorite = !updatedMeetup.isFavorite; 
+		const meetUpIndex = meetups.findIndex(m => m.id ===id); //copy the entire meetups array
+		const updatedMeetups = [...meetups];
+		updatedMeetups[meetUpIndex] = updatedMeetup; 
+
+	}
 </script>
 
 <style>
@@ -57,7 +68,7 @@
 		margin-top: 5rem;
 	}
 
-	form{
+	form {
 		width: 30rem;
 		max-width: 90%;
 		margin: auto;
@@ -68,43 +79,38 @@
 
 <main>
 	<form on:submit|preventDefault={addMeetup}>
-		<TextInput 
-		id="title"
-		label="Title"
-		value={title}
-
-		on:input={event=> (title = event.target.value)}/>
-		<TextInput 
-		id="subtitle"
-		label="Subtitle"
-		
-		value={subtitle}
-		on:input={event=> (subtitle = event.target.value)}/>
-		<TextInput 
-		id="address"
-		label="Address"
-		
-		value={address}
-		on:input={event=> (address = event.target.value)}/>
-		<TextInput 
-		id="imageUrl"
-		label="ImageUrl"
-		value={imageUrl}
-	
-		on:input={event=> (imageUrl = event.target.value)}/>
-		<TextInput 
-		id="email"
-		label="E-Mail"
-		
-		value={email}
-		on:input={event=> (email = event.target.value)}/>
-		<TextInput 
-		id="description"
-		label="Description"
-		type="textarea"
-		value={description}
-		on:input={event=> (description = event.target.value)}/>
+		<TextInput
+			id="title"
+			label="Title"
+			value={title}
+			on:input={(event) => (title = event.target.value)} />
+		<TextInput
+			id="subtitle"
+			label="Subtitle"
+			value={subtitle}
+			on:input={(event) => (subtitle = event.target.value)} />
+		<TextInput
+			id="address"
+			label="Address"
+			value={address}
+			on:input={(event) => (address = event.target.value)} />
+		<TextInput
+			id="imageUrl"
+			label="ImageUrl"
+			value={imageUrl}
+			on:input={(event) => (imageUrl = event.target.value)} />
+		<TextInput
+			id="email"
+			label="E-Mail"
+			value={email}
+			on:input={(event) => (email = event.target.value)} />
+		<TextInput
+			id="description"
+			label="Description"
+			type="textarea"
+			value={description}
+			on:input={(event) => (description = event.target.value)} />
 		<Button type="submit" caption="Save" />
 	</form>
-	<MeetupGrid {meetups} />
+	<MeetupGrid {meetups} on:toogleFavorite={toogleFavorite} />
 </main>
