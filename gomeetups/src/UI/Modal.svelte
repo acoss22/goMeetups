@@ -59,7 +59,7 @@
 </style>
 
 <div class="modal-backdrop" transition:fade on:click={closeModal} />
-<div class="modal">
+<div class="modal" transition:fly={{y: 300}}>
   <h1>{title}</h1>
   <div class="content">
     <slot />
