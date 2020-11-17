@@ -1,4 +1,5 @@
 <script>
+  import meetups from "./meetups-store.js";
   import { createEventDispatcher } from "svelte";
   import TextInput from "../UI/TextInput.svelte";
   import Button from "../UI/Button.svelte";
@@ -29,14 +30,18 @@
     emailValid;
 
   function submitForm() {
-    dispatch("save", {
+    const meetupData = {
       title: title,
       subtitle: subtitle,
-      address: address,
-      email: email,
       description: description,
-      imageUrl: imageUrl
-    });
+      imageUrl: imageUrl,
+      contactEmail: email,
+      address: address
+    };
+
+    // meetups.push(newMeetup); // DOES NOT WORK!
+    meetups.addMeetup(meetupData);
+    dispatch("save");
   }
 
   function cancel() {
@@ -51,7 +56,7 @@
 </style>
 
 <Modal title="Edit Meetup Data" on:cancel>
-  <form on:submit|preventDefault={submitForm}>
+  <form on:submit={submitForm}>
     <TextInput
       id="title"
       label="Title"
@@ -98,6 +103,8 @@
   </form>
   <div slot="footer">
     <Button type="button" mode="outline" on:click={cancel}>Cancel</Button>
-    <Button type="button" on:click={submitForm} disabled={!formIsValid}>Save</Button>
+    <Button type="button" on:click={submitForm} disabled={!formIsValid}>
+      Save
+    </Button>
   </div>
 </Modal>
